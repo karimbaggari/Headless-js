@@ -1,4 +1,3 @@
-User
 # Headless-js
 
 
@@ -21,9 +20,9 @@ You can install the `headless-js` library via npm or yarn:
 
 
 ```bash
-npm install headless-js
+npm install k.headless-js
 # or
-yarn add headless-js
+yarn add k.headless-js
 ```
 
 ## Usage
@@ -31,30 +30,43 @@ Here's an example of how to use the `useForm` hook from `headless-js` for form h
 
 ```jsx
 import React from 'react';
-import { useForm } from 'headless-js';
+import { useForm } from 'k.headless-js';
 
-const MyForm = () => {
-  const { formValues, handleChange, handleSubmit } = useForm({
-    initialValues: {
+const FormComponentExample = () => {
+  // Define submitForm function
+  const submitForm = (values) => {
+    console.log('Form submitted with values:', values);
+  };
+
+  // Initialize useForm hook with initial values and submitForm function
+  const { formValues, handleChange, handleSubmit } = useForm(
+    {
       username: '',
       password: '',
     },
-    onSubmit: submitForm, // Reference to your submitForm function
-  });
-
-  const submitForm = () => {
-    // Handle form submission logic here
-    console.log('Form submitted with values:', formValues);
-  };
+    submitForm // Pass submitForm as the onSubmit function
+  );
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Form inputs and submit button */}
+      <input
+        type="text"
+        name="username"
+        value={formValues.username}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="password"
+        value={formValues.password}
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
     </form>
   );
 };
 
-export default MyForm;
+export default FormComponentExample;
 ```
 
 ## Contributing

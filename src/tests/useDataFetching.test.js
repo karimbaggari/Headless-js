@@ -13,7 +13,6 @@ describe('useDataFetching', () => {
   beforeEach(() => {
     fetch.mockClear(); // Clear mock function before each test
   });
-
   it('should fetch data from the provided URL', async () => {
     const url = 'https://example.com/api/data'; // Mock URL
 
